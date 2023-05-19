@@ -5,10 +5,10 @@
         <div class="row">
             <div class="col-lg-12 margin-tb">
                 <div class="pull-left mb-2">
-                    <h2>Add Valas</h2>
+                    <h2>Add Customer</h2>
                 </div>
                 <div class="pull-right">
-                    <a class="btn btn-primary" href="{{ route('valas.index') }}"> Back</a>
+                    <a class="btn btn-primary" href="{{ route('customers.index') }}"> Back</a>
                 </div>
             </div>
         </div>
@@ -17,41 +17,36 @@
             {{ session('status') }}
         </div>
         @endif
-        <form action="{{ route('valas.store') }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('customers.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="row">
                 <div class="col-xs-12 col-sm-12 col-md-12">
                     <div class="form-group">
-                        <strong>Nama Valas:</strong>
-                        <input type="text" name="nama_valas" class="form-control" placeholder="Nama Valas">
-                        @error('nama_valas')
+                        <strong>Nama Customer:</strong>
+                        <input type="text" name="nama_customer" class="form-control" placeholder="Nama Customer">
+                        @error('nama_customer')
                         <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                         @enderror
                     </div>
                 </div>
                 <div class="col-xs-12 col-sm-12 col-md-12">
                     <div class="form-group">
-                        <strong>Nilai Jual:</strong>
-                        <input type="number" name="nilai_jual" class="form-control" placeholder="Nilai Jual">
-                        @error('nilai_jual')
+                        <strong>Alamat:</strong>
+                        <textarea name="alamat" class="form-control" maxlength="255" placeholder="Alamat"></textarea>
+                        @error('alamat')
                         <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                         @enderror
                     </div>
                 </div>
                 <div class="col-xs-12 col-sm-12 col-md-12">
                     <div class="form-group">
-                        <strong>Nilai Beli:</strong>
-                        <input type="number" name="nilai_beli" class="form-control" placeholder="Nilai Beli">
-                        @error('nilai_beli')
-                        <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
-                        @enderror
-                    </div>
-                </div>
-                <div class="col-xs-12 col-sm-12 col-md-12">
-                    <div class="form-group">
-                        <strong>Tanggal Rate:</strong>
-                        <input type="date" name="tanggal_rate" class="form-control" placeholder="Tanggal Rate">
-                        @error('address')
+                        <strong>Membership:</strong>
+                        <select name="id_membership" class="form-control">
+                            @foreach ($memberships as $membership)
+                                <option value="{{ $membership->id }}">{{ $membership->nama_membership }}</option>
+                            @endforeach
+                        </select>
+                        @error('id_membership')
                         <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                         @enderror
                     </div>
