@@ -25,6 +25,8 @@ Auth::routes();
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 Route::get('admin/home', [HomeController::class, 'adminHome'])->name('admin.home')->middleware('is_admin');
-Route::resource('valas', ValasController::class);
-Route::resource('customers', CustomerController::class);
-Route::resource('memberships', MembershipController ::class);
+Route::middleware('auth')->group(function () {
+    Route::resource('valas', ValasController::class);
+    Route::resource('customers', CustomerController::class);
+    Route::resource('memberships', MembershipController::class);
+});
